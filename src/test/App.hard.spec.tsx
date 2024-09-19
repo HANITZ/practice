@@ -17,7 +17,7 @@ describe('App hard', () => {
 
     userEvent.click(document.body);
     await delay(100);
-    expect(screen.queryByText(/비밀번호를 입력하세요/)).not.toBeInTheDocument();
+    expect(screen.queryByText(/비밀번호를 입력해주세요/)).not.toBeInTheDocument();
     expect(screen.queryByText(/6자리로 입력해주세요/)).not.toBeInTheDocument();
   });
 
@@ -28,7 +28,7 @@ describe('App hard', () => {
 
     userEvent.click(await screen.findByLabelText<HTMLInputElement>(`비밀번호 확인`));
 
-    expect(await screen.findAllByText(/비밀번호를 입력하세요/)).toHaveLength(1);
+    expect(await screen.findAllByText(/비밀번호를 입력해주세요/)).toHaveLength(1);
     expect(await screen.findAllByText(/6자리로 입력해주세요/)).toHaveLength(1);
   });
 

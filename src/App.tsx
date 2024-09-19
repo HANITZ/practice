@@ -3,6 +3,10 @@ import { Global, css } from '@emotion/react';
 import { PageLayout } from '_tosslib/components/PageLayout';
 import { KeypadPage } from 'pages/KeypadPage';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { Suspense } from 'react';
+import { Loading } from 'components/Loading';
+import { ErrorBoundary } from 'react-error-boundary';
+import { Error } from 'components/Error';
 
 export default function App() {
   const queryClient = new QueryClient();
@@ -20,7 +24,11 @@ export default function App() {
           `}
         />
         <PageLayout>
-          <KeypadPage />
+          <ErrorBoundary fallback={<Error />}>
+            <Suspense fallback={<Loading />}>
+              <KeypadPage />
+            </Suspense>
+          </ErrorBoundary>
         </PageLayout>
       </QueryClientProvider>
     </>
